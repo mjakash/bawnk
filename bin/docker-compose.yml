@@ -1,0 +1,57 @@
+services:
+  # Service 1: PostgreSQL Database (No changes)
+  db:
+    image: postgres:14-alpine
+    container_name: banking-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: banking_app_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - banking-net
+
+  # Service 2: Spring Boot Backend (UPDATED)
+  backend:
+    build:
+      context: ./backend  # <-- Tells Docker to look in the 'backend' folder
+      dockerfile: Dockerfile # <-- Tells Docker to use 'backend/Dockerfile'
+    container_name: banking-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/banking_app_db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      # Add the properties we externalized
+      APPLICATION_SECURITY_JWT_SECRET_KEY: ${APPLICATION_SECURITY_JWT_SECRET_KEY}
+      APPLICATION_SECURITY_JWT_EXPIRATION: 36000000
+      APPLICATION_DB_PROCEDURES_EXECUTE_TRANSFER: execute_transfer
+    depends_on:
+      - db
+    networks:
+      - banking-net
+
+  # Service 3: Vite + React Frontend (NEW)
+  frontend:
+    build:
+      context: ./frontend  # <-- Tells Docker to look in the 'frontend' folder
+      dockerfile: Dockerfile # <-- We will create this file next
+    container_name: banking-frontend
+    ports:
+      - "5173:80" # <-- Map local 5173 to container's port 80 (Nginx default)
+    depends_on:
+      - backend
+    networks:
+      - banking-net
+
+volumes:
+  postgres-data:
+
+networks:
+  banking-net:
+    driver: bridge

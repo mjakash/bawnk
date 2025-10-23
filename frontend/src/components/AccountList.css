@@ -1,0 +1,67 @@
+/* src/components/AccountList.css */
+.account-list {
+  margin-top: 2rem;
+}
+
+.account-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.3s ease;
+}
+
+.account-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.account-type {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.account-number {
+  font-size: 0.9rem;
+  color: #777;
+  font-family: monospace;
+  display: flex; /* Make it a flex container */
+  align-items: center; /* Align items vertically */
+  gap: 0.5rem; /* Add space between number and button */
+}
+
+.account-balance {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #007bff;
+}
+
+.account-balance-label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.visibility-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0;
+  margin: 0;
+  color: #555;
+  line-height: 1; /* Aligns the emoji better */
+}
+
+.visibility-toggle:hover {
+  color: #000;
+}
