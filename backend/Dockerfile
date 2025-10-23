@@ -1,6 +1,6 @@
 # ----- Stage 1: Build The App -----
-# Use a base image with Maven and Java 17 to build our .jar file
-FROM maven:3.9-eclipse-temurin-17 AS build
+# Use a base image with Maven and Java 21 (LTS)
+FROM maven:3.9-eclipse-temurin-21 AS build  # <-- CHANGED TO 21
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -19,8 +19,8 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # ----- Stage 2: Create The Final Image -----
-# Use a lightweight base image with just the Java 17 Runtime
-FROM openjdk:21-jdk-slim
+# Use a lightweight base image with just the Java 21 (LTS) Runtime
+FROM openjdk:21-jdk-slim  # <-- CHANGED TO 21
 
 WORKDIR /app
 
