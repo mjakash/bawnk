@@ -55,6 +55,7 @@ public class SecurityConfig {
         // IMPORTANT: Set your exact frontend URL
         configuration.setAllowedOrigins(List.of(
             "https://bawnk.onrender.com",  // <-- Your deployed frontend URL
+            "http://bawnk.onrender.com",
             "http://localhost:5173"        // <-- Your local dev frontend URL
         ));
         
