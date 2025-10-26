@@ -1,0 +1,55 @@
+/* src/components/TransactionHistory.css */
+.transaction-history {
+  margin-top: 2rem;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.transaction-history h4 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  color: #333333; /* Set default text color to dark gray/black */
+}
+
+.transaction-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  color: #333333; /* Ensure header text is also dark */
+}
+
+.transaction-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.amount-debit {
+  color: #dc3545; /* Red for money out */
+  font-weight: bold;
+}
+
+.amount-credit {
+  color: #28a745; /* Green for money in */
+  font-weight: bold;
+}
+
+.no-transactions {
+  color: #777;
+  font-style: italic;
+  padding: 1rem 0;
+}

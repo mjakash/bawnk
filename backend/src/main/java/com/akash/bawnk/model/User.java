@@ -47,7 +47,12 @@ public class User implements UserDetails { // Implement UserDetails
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+    	
+    	if(null==this.role)
+    		return List.of();
+    	
+        return List.of(new SimpleGrantedAuthority("ROLE_"+this.role.name()));
+        
     }
 
     // We already have getPassword() from @Data
